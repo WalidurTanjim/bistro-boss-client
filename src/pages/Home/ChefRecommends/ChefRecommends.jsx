@@ -10,7 +10,7 @@ const ChefRecommends = () => {
             <SectionTitle sub_title="Should Try" title="Chef Recommends" />
 
             <div className='grid gap-5 grid-cols-1 md:grid-cols-3'>
-                <div className="card card-compact bg-base-100 w-96 shadow-xl">
+                <div className="card card-compact bg-base-100 w-full shadow-xl">
                     <figure>
                         <img
                             src={salad}
@@ -25,7 +25,7 @@ const ChefRecommends = () => {
                     </div>
                 </div>
 
-                <div className="card card-compact bg-base-100 w-96 shadow-xl">
+                <div className="card card-compact bg-base-100 w-full shadow-xl">
                     <figure>
                         <img
                             src={pizza}
@@ -40,7 +40,7 @@ const ChefRecommends = () => {
                     </div>
                 </div>
 
-                <div className="card card-compact bg-base-100 w-96 shadow-xl">
+                <div className="card card-compact bg-base-100 w-full shadow-xl">
                     <figure>
                         <img
                             src={soup}

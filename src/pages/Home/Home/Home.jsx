@@ -5,6 +5,7 @@ import CoverSection from '../../../components/CoverSection/CoverSection';
 import FeaturedMenu from '../FeaturedMenu/FeaturedMenu';
 import CallUs from '../CallUs/CallUs';
 import ChefRecommends from '../ChefRecommends/ChefRecommends';
+import FeaturedBanner from '../FeaturedBanner/FeaturedBanner';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <FeaturedMenu />
             <CallUs />
             <ChefRecommends />
+            <FeaturedBanner />
         </section>
     );
 };
