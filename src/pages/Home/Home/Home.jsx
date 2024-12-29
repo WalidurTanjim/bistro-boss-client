@@ -6,6 +6,7 @@ import FeaturedMenu from '../FeaturedMenu/FeaturedMenu';
 import CallUs from '../CallUs/CallUs';
 import ChefRecommends from '../ChefRecommends/ChefRecommends';
 import FeaturedBanner from '../FeaturedBanner/FeaturedBanner';
+import Testimonials from '../Testimonials/Testimonials';
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
             <CallUs />
             <ChefRecommends />
             <FeaturedBanner />
+            <Testimonials />
         </section>
     );
 };
