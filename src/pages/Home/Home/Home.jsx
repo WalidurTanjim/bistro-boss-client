@@ -8,7 +8,7 @@ const Home = () => {
         <section className='home'>
             <Banner />
             <Category />
-            <CoverSection />
+            <CoverSection title="Bistro Boss" sub_title="Bistro Boss is a modern restaurant website showcasing a variety of delicious cuisines with an elegant design. It features a user-friendly interface for browsing menus, booking tables, and exploring special offers, ensuring a delightful dining experience online." />
         </section>
     );
 };
