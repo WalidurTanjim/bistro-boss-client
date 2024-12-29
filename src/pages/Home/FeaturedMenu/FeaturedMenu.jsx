@@ -18,7 +18,7 @@ const FeaturedMenu = () => {
         <section className='featured-menu container mx-auto px-6 py-10'>
             <SectionTitle sub_title="Check It Out" title="FROM OUR MENU" />
 
-            <div className="pt-10">
+            <div className="pb-10">
                 {
                     isPending ? (
                         <Spinner />
@@ -30,7 +30,6 @@ const FeaturedMenu = () => {
                     <div className='grid gap-5 grid-cols-1 md:grid-cols-2'>
                         {
                             featured_menu?.map(menu => {
-                                console.log(menu);
                                 return (
                                     <div key={menu?._id} className='p-2 border flex gap-x-3 rounded-md shadow-sm'>
                                         <img src={menu?.image} alt="" className='w-[90px] h-[90px] rounded-r-full rounded-b-full' />
@@ -47,6 +46,10 @@ const FeaturedMenu = () => {
                         }
                     </div>
                 }
+            </div>
+
+            <div className="flex items-center justify-center">
+                <button className='font-medium py-2 px-5 rounded-md border-b-2 border-orange-500 hover:bg-gray-100 active:bg-white'>View All Menu</button>
             </div>
         </section>
     );
