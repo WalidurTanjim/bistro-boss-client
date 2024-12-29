@@ -25,7 +25,7 @@ const Header = () => {
 
                         <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow gap-y-2">
                             <NavLink to='/'><li>Home</li></NavLink>
-                            <NavLink to='/out-menu'><li>Our Menu</li></NavLink>
+                            <NavLink to='/our-menu'><li>Our Menu</li></NavLink>
                             <NavLink to='/contact-us'><li>Contact Us</li></NavLink>
                         </ul>
                     </div>
@@ -36,7 +36,7 @@ const Header = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 gap-x-3">
                         <NavLink to='/'><li>Home</li></NavLink>
-                        <NavLink to='/out-menu'><li>Our Menu</li></NavLink>
+                        <NavLink to='/our-menu'><li>Our Menu</li></NavLink>
                         <NavLink to='/contact-us'><li>Contact Us</li></NavLink>
                     </ul>
                 </div>

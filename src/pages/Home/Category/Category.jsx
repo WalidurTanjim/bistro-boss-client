@@ -13,7 +13,7 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const Category = () => {
     return (
-        <section className='container mx-auto px-6 py-10'>
+        <section className='container mx-auto px-6 py-10 mb-10'>
             <SectionTitle sub_title="From 11:00 am to 10:00 pm" title="Order Online" />
 
             <Swiper

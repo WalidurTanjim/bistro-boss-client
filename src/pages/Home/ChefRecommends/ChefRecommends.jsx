@@ -6,7 +6,7 @@ import soup from '../../../assets/home/slide3.jpg'
 
 const ChefRecommends = () => {
     return (
-        <section className='chef-recommends container mx-auto px-6 py-10'>
+        <section className='chef-recommends container mx-auto px-6 py-10 mb-10'>
             <SectionTitle sub_title="Should Try" title="Chef Recommends" />
 
             <div className='grid gap-5 grid-cols-1 md:grid-cols-3'>
