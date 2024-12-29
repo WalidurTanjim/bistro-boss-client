@@ -49,7 +49,7 @@ const FeaturedMenu = () => {
             </div>
 
             <div className="flex items-center justify-center">
-                <button className='font-medium py-2 px-5 rounded-md border-b-2 border-orange-500 hover:bg-gray-100 active:bg-white'>View All Menu</button>
+                <button className='font-medium py-3 px-5 rounded-md border-b-2 border-orange-500 hover:bg-gray-100 active:bg-white'>View All Menu</button>
             </div>
         </section>
     );
