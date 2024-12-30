@@ -60,6 +60,11 @@ const ContactUs = () => {
                     </div>
                 </div>
             </div>
+
+            {/* send us a message div starts */}
+            <div className="contact-form container mx-auto px-6 pb-10">
+                <SectionTitle sub_title="Send Us A Message" title="Contact Form" />
+            </div>
         </section>
     );
 };
