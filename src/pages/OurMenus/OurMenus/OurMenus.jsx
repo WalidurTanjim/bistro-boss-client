@@ -11,6 +11,7 @@ const OurMenus = () => {
     const popularMenu = menu?.filter(menuItem => menuItem?.category.toLowerCase() === 'popular');
     const saladMenu = menu?.filter(menuItem => menuItem?.category.toLowerCase() === 'salad');
     const pizzaMenu = menu?.filter(menuItem => menuItem?.category.toLowerCase() === 'pizza');
+    const soupMenu = menu?.filter(menuItem => menuItem?.category.toLowerCase() === 'soup');
     const dessertMenu = menu?.filter(menuItem => menuItem?.category.toLowerCase() === 'dessert');
     const drinksMenu = menu?.filter(menuItem => menuItem?.category.toLowerCase() === 'drinks');
 
@@ -38,6 +39,13 @@ const OurMenus = () => {
                 </div>
                 <CategoryMenuWithButton meals={pizzaMenu.slice(0, 6)} isPending={isPending} isError={isError} error={error} buttonText="Order Our Favorite Food" />
                 {/* pizzaMenu section ends */}
+
+                {/* soupMenu section starts */}
+                <div className="py-10">
+                    <CoverSection title="Soup" sub_title="Bistro Boss Restaurant offers a diverse menu featuring exquisite, freshly prepared dishes crafted from premium ingredients." image={chefBg} />
+                </div>
+                <CategoryMenuWithButton meals={soupMenu.slice(0, 6)} isPending={isPending} isError={isError} error={error} buttonText="Order Our Favorite Food" />
+                {/* soupMenu section ends */}
 
                 {/* dessertMenu section starts */}
                 <div className="py-10">
