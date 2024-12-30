@@ -34,9 +34,13 @@ const CategoryMenuWithButton = ({ meals, isPending, isError, error, buttonText }
                 }
             </div>
 
-            <div className="flex items-center justify-center">
-                <button className='font-medium py-3 px-5 rounded-md border-b-2 border-orange-500 hover:bg-gray-100 active:bg-white'>{buttonText}</button>
-            </div>
+            {
+                buttonText ? 
+                <div className="flex items-center justify-center">
+                    <button className='font-medium py-3 px-5 rounded-md border-b-2 border-orange-500 hover:bg-gray-100 active:bg-white'>{buttonText}</button>
+                </div>
+                : undefined
+            }
         </>
     );
 };
