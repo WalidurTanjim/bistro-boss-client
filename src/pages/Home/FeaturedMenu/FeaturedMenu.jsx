@@ -20,7 +20,7 @@ const FeaturedMenu = () => {
             <SectionTitle sub_title="Check It Out" title="FROM OUR MENU" />
 
             <div className="menu-button-container">
-                <CategoryMenuWithButton featured_menu={featured_menu} isPending={isPending} isError={isError} buttonText="View All Menu" />
+                <CategoryMenuWithButton meals={featured_menu} isPending={isPending} isError={isError} buttonText="View All Menu" />
             </div>
         </section>
     );

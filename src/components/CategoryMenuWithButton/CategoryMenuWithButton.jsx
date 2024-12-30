@@ -1,7 +1,7 @@
 import React from 'react';
 import Spinner from '../Spinner/Spinner';
 
-const CategoryMenuWithButton = ({ featured_menu, isPending, isError, error, buttonText }) => {
+const CategoryMenuWithButton = ({ meals, isPending, isError, error, buttonText }) => {
     return (
         <>
             <div className="pb-10">
@@ -15,7 +15,7 @@ const CategoryMenuWithButton = ({ featured_menu, isPending, isError, error, butt
                     ) :
                         <div className='grid gap-5 grid-cols-1 md:grid-cols-2'>
                             {
-                                featured_menu?.map(menu => {
+                                meals?.map(menu => {
                                     return (
                                         <div key={menu?._id} className='p-2 border flex gap-x-3 rounded-md shadow-sm'>
                                             <img src={menu?.image} alt="" className='w-[90px] h-[90px] rounded-r-full rounded-b-full' />
