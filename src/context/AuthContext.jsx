@@ -23,11 +23,10 @@ const AuthContext = ({ children }) => {
     }
 
     // updateUserProfile
-    const updateUserProfile = (user, name, image) => {
+    const updateUserProfile = (user, name) => {
         setLoading(true);
         return updateProfile(user, {
-            displayName: name,
-            photoURL: image
+            displayName: name
         });
     }
 

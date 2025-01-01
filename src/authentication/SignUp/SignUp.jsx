@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import SocialLogIn from '../../components/SocialLogIn/SocialLogIn';
+import useAuth from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [createPasswordErrMsg, setCreatePasswordErrMsg] = useState('');
     const [confirmPasswordErrMsg, setConfirmPasswordErrMsg] = useState('');
     const [errMsg, setErrMsg] = useState('');
+    const passRegEx = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    const { createUser, updateUserProfile } = useAuth();
+    const navigate = useNavigate();
 
 
     const { register, handleSubmit, watch, formState: { errors }, } = useForm()
@@ -16,7 +21,38 @@ const SignUp = () => {
         setConfirmPasswordErrMsg('');
         setErrMsg('');
 
-        console.log(data)
+        // validate password
+        if(!passRegEx.test(data.createPassword)){
+            return setCreatePasswordErrMsg('Password must be uppercase, lowercase, digits, special char & min 6 chars')
+        }
+        if(data.createPassword !== data.confirmPassword){
+            return setConfirmPasswordErrMsg('Both are not equal');
+        }
+
+        // create user
+        createUser(data.email, data.confirmPassword)
+        .then(result => {
+            const user = result?.user;
+            updateUserProfileHandler(user, data.fullname);
+            console.log('Create user:', user);
+            navigate('/');
+        })
+        .catch(err => {
+            console.error(err);
+            setErrMsg(err?.message)
+        })
+    }
+
+    // updateUserProfileHandler
+    const updateUserProfileHandler = (user, fullname) => {
+        updateUserProfile(user, fullname)
+        .then(() => {
+            toast.success('User profile updated');
+        })
+        .catch(err => {
+            console.error(err);
+            setErrMsg(err?.message);
+        })
     }
 
     return (
@@ -60,6 +96,7 @@ const SignUp = () => {
 
                             <input type={showPassword ? 'text' : 'password'} className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Create Password" {...register("createPassword", { required: true })} />
                         </div>
+                        {createPasswordErrMsg ? <p className='text-xs text-red-500 ps-4 mt-1'>{createPasswordErrMsg}</p> : undefined}
 
                         {/* confirm password filed */}
                         <div className="relative flex items-center mt-4">
@@ -71,6 +108,7 @@ const SignUp = () => {
 
                             <input type={showPassword ? 'text' : 'password'} className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Confirm Password" {...register("confirmPassword", { required: true })} />
                         </div>
+                        {confirmPasswordErrMsg ? <p className='text-xs text-red-500 ps-4 mt-1'>{confirmPasswordErrMsg}</p> : undefined}
 
                         {/* phone field */}
                         <div className="relative flex items-center mt-4">
