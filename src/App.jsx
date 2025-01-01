@@ -6,6 +6,8 @@ import Home from './pages/Home/Home/Home'
 import OurMenus from './pages/OurMenus/OurMenus/OurMenus'
 import OurShop from './pages/OurShop/OurShop/OurShop'
 import ContactUs from './pages/ContactUs/ContactUs'
+import SignUp from './authentication/SignUp/SignUp'
+import Signin from './authentication/Signin/Signin'
 
 function App() {
   const routers = createBrowserRouter([
@@ -13,7 +15,9 @@ function App() {
       {path: '/', element: <Home />},
       {path: '/our-menu', element: <OurMenus />},
       {path: '/our-shop', element: <OurShop />},
-      {path: '/contact-us', element: <ContactUs />}
+      {path: '/contact-us', element: <ContactUs />},
+      {path: '/sign-up', element: <SignUp />},
+      {path: '/sign-in', element: <Signin />}
     ]}
   ])
 
