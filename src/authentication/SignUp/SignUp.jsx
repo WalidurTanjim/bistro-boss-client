@@ -12,10 +12,10 @@ const SignUp = () => {
     const [errMsg, setErrMsg] = useState('');
     const passRegEx = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     const { createUser, updateUserProfile } = useAuth();
+    const { register, handleSubmit, watch, formState: { errors }, } = useForm()
     const navigate = useNavigate();
 
 
-    const { register, handleSubmit, watch, formState: { errors }, } = useForm()
     const onSubmit = (data) => {
         setCreatePasswordErrMsg('');
         setConfirmPasswordErrMsg('');

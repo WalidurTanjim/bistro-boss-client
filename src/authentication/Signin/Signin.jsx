@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import SocialLogIn from '../../components/SocialLogIn/SocialLogIn';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import useAuth from '../../hooks/useAuth';
 
 const Signin = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [errMsg, setErrMsg] = useState('');
     const [captchaValue, setCaptchaValue] = useState('');
+    const { signInUser } = useAuth();
     const { register, handleSubmit, watch, formState: { errors }, } = useForm();
+    const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -21,8 +25,18 @@ const Signin = () => {
         if(!validateCaptcha(captchaValue)){
             return
         }
-        
-        console.log(data);
+
+        // sign in user
+        signInUser(data.email, data.password)
+        .then(result => {
+            const user = result?.user;
+            console.log('Sign in user:', user);
+            navigate('/');
+        })
+        .catch(err => {
+            console.error(err);
+            setErrMsg(err?.message);
+        })
     }
 
     return (
