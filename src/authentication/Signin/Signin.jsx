@@ -8,6 +8,7 @@ const Signin = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [errMsg, setErrMsg] = useState('');
     const [captchaValue, setCaptchaValue] = useState('');
+    // const [disable, setDisable] = useState(true);
     const { register, handleSubmit, watch, formState: { errors }, } = useForm();
 
     useEffect(() => {
@@ -16,8 +17,11 @@ const Signin = () => {
 
     const onSubmit = (data) => {
         setErrMsg('');
-        setCaptchaValue('');
 
+        if(!validateCaptcha(captchaValue)){
+            return
+        }
+        
         console.log(data);
     }
 
@@ -65,7 +69,7 @@ const Signin = () => {
                                     </svg>
                                 </span>
 
-                                <input type="text" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Type Captcha" onBlur={e => setCaptchaValue(e.target.value)} {...register("typeCaptcha", { required: true })} />
+                                <input type="text" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Type Captcha" onBlur={e => setCaptchaValue(e.target.value)} required />
                             </div>
                         </div>
 
@@ -83,7 +87,7 @@ const Signin = () => {
                         </div>
 
                         <div className="mt-6">
-                            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">Sign in</button>
+                            <button className={` w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50`}>Sign in</button>
 
                             <p className="mt-4 text-center text-gray-600 dark:text-gray-400">or sign in with</p>
 
