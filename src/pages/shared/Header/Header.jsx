@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const Header = () => {
+    const [navLinks, setNavLinks] = useState(false);
+    const { user, logOut } = useAuth();
+
+    // signOutHandler
+    const signOutHandler = () => {
+        logOut()
+        .then(() => {
+            setNavLinks(false);
+            console.log('Logout successfully');
+        })
+        .catch(err => {
+            toast.error(err?.message);
+        })
+    }
     
     return (
         <div className="bg-base-100">
@@ -43,8 +59,28 @@ const Header = () => {
                     </ul>
                 </div>
 
-                <div className="navbar-end">
-                    <Link to='/sign-in' className="btn">Sign In</Link>
+                <div className="navbar-end relative">
+                    {
+                        user ? 
+                        <>
+                            <div className="avatar placeholder cursor-pointer">
+                                <div className="bg-neutral text-neutral-content w-8 rounded-full" onClick={() => setNavLinks(!navLinks)}>
+                                    <span className='uppercase'>{user?.displayName.charAt(0)}</span>
+                                </div>
+                            </div>
+                            {
+                                navLinks ? 
+                                <div className='absolute top-12 right-0 z-10 w-44 p-1.5 rounded-md bg-white border'>
+                                    <Link to='/my-profile'>
+                                        <p className="py-1.5 ps-2 rounded-md text-sm hover:bg-gray-100 cursor-default mb-1">My Profile</p>
+                                    </Link>
+                                    <p className="py-1.5 ps-2 rounded-md text-sm hover:bg-gray-100 cursor-default" onClick={signOutHandler}>Sign Out</p>
+                                </div>
+                                : undefined
+                            }
+                        </> :
+                        <Link to='/sign-in' className="btn">Sign In</Link>
+                    }
                 </div>
             </div>
         </div>
