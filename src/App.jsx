@@ -13,11 +13,11 @@ function App() {
   const routers = createBrowserRouter([
     {path: '/', errorElement: <ErrorPage />, element: <MainLayout />, children: [
       {path: '/', element: <Home />},
-      {path: '/our-menu', element: <OurMenus />},
-      {path: '/our-shop', element: <OurShop />},
-      {path: '/contact-us', element: <ContactUs />},
-      {path: '/sign-up', element: <SignUp />},
-      {path: '/sign-in', element: <Signin />}
+      {path: 'our-menu', element: <OurMenus />},
+      {path: 'our-shop', element: <OurShop />},
+      {path: 'contact-us', element: <ContactUs />},
+      {path: 'sign-up', element: <SignUp />},
+      {path: 'sign-in', element: <Signin />}
     ]}
   ])
 
