@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import toast from 'react-hot-toast';
+import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 
 const Header = () => {
     const [navLinks, setNavLinks] = useState(false);
@@ -60,6 +61,10 @@ const Header = () => {
                 </div>
 
                 <div className="navbar-end relative">
+                    <div className="flex items-center gap-x-1 px-1 py-2 hover:bg-gray-100 cursor-pointer rounded-md border me-2">
+                        <ShoppingCartIcon className="size-5 text-slate-800" />
+                        <div className="badge badge-neutral">+ {user ? 99 : 0}</div>
+                    </div>
                     {
                         user ? 
                         <>
