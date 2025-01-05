@@ -61,10 +61,12 @@ const Header = () => {
                 </div>
 
                 <div className="navbar-end relative">
-                    <div className="flex items-center gap-x-1 px-1 py-2 hover:bg-gray-100 cursor-pointer rounded-md border me-2">
-                        <ShoppingCartIcon className="size-5 text-slate-800" />
-                        <div className="badge badge-neutral">+ {user ? 99 : 0}</div>
-                    </div>
+                    <Link to="/dashboard/cart">
+                        <div className="flex items-center gap-x-1 px-1 py-2 hover:bg-gray-100 cursor-pointer rounded-md border me-2">
+                            <ShoppingCartIcon className="size-5 text-slate-800" />
+                            <div className="badge badge-neutral">+ {user ? 99 : 0}</div>
+                        </div>
+                    </Link>
                     {
                         user ? 
                         <>

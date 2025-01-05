@@ -8,6 +8,8 @@ import OurShop from './pages/OurShop/OurShop/OurShop'
 import ContactUs from './pages/ContactUs/ContactUs'
 import SignUp from './authentication/SignUp/SignUp'
 import Signin from './authentication/Signin/Signin'
+import DashboardLayout from './layout/DashboardLayout'
+import Cart from './pages/Dashboard/Cart/Cart'
 
 function App() {
   const routers = createBrowserRouter([
@@ -18,7 +20,12 @@ function App() {
       {path: 'contact-us', element: <ContactUs />},
       {path: 'sign-up', element: <SignUp />},
       {path: 'sign-in', element: <Signin />}
-    ]}
+    ]},
+    {
+      path: 'dashboard', element: <DashboardLayout />, children: [
+        {path: 'cart', element: <Cart />}
+      ]
+    }
   ])
 
   return (
