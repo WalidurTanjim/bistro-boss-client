@@ -20,11 +20,9 @@ const MenuCard = ({ meals, isPending, isError, error }) => {
 
                                     return (
                                         <div key={_id} className="card bg-base-100 w-full border shadow-md hover:shadow-lg">
-                                            <figure className="px-7 pt-7">
-                                                <img
-                                                    src={image}
-                                                    alt=""
-                                                    className="rounded-lg" />
+                                            <figure className="relative px-7 pt-7">
+                                                <img src={image} alt="" className="rounded-lg" />
+                                                <p className='absolute top-7 right-7 inline-block px-4 py-1 rounded-md bg-orange-500 text-white text-sm'>${price}</p>
                                             </figure>
                                             <div className="card-body items-center text-center">
                                                 <h2 className="card-title">{name}</h2>

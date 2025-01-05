@@ -30,35 +30,35 @@ const OurMenus = () => {
                 <div className="py-10">
                     <CoverSection title="Salad" sub_title="Bistro Boss Restaurant offers a diverse menu featuring exquisite, freshly prepared dishes crafted from premium ingredients." image={chefBg} />
                 </div>
-                <CategoryMenuWithButton meals={saladMenu.slice(0, 6)} isPending={isPending} isError={isError} error={error} buttonText="Order Our Favorite Food" />
+                <CategoryMenuWithButton title="salad" meals={saladMenu.slice(0, 6)} isPending={isPending} isError={isError} error={error} buttonText="Order Our Favorite Food" />
                 {/* saladMenu section ends */}
 
                 {/* pizzaMenu section starts */}
                 <div className="py-10">
                     <CoverSection title="Pizza" sub_title="Bistro Boss Restaurant offers a diverse menu featuring exquisite, freshly prepared dishes crafted from premium ingredients." image={chefBg} />
                 </div>
-                <CategoryMenuWithButton meals={pizzaMenu.slice(0, 6)} isPending={isPending} isError={isError} error={error} buttonText="Order Our Favorite Food" />
+                <CategoryMenuWithButton title="pizza" meals={pizzaMenu.slice(0, 6)} isPending={isPending} isError={isError} error={error} buttonText="Order Our Favorite Food" />
                 {/* pizzaMenu section ends */}
 
                 {/* soupMenu section starts */}
                 <div className="py-10">
                     <CoverSection title="Soup" sub_title="Bistro Boss Restaurant offers a diverse menu featuring exquisite, freshly prepared dishes crafted from premium ingredients." image={chefBg} />
                 </div>
-                <CategoryMenuWithButton meals={soupMenu.slice(0, 6)} isPending={isPending} isError={isError} error={error} buttonText="Order Our Favorite Food" />
+                <CategoryMenuWithButton title="soup" meals={soupMenu.slice(0, 6)} isPending={isPending} isError={isError} error={error} buttonText="Order Our Favorite Food" />
                 {/* soupMenu section ends */}
 
                 {/* dessertMenu section starts */}
                 <div className="py-10">
                     <CoverSection title="Dessert" sub_title="Bistro Boss Restaurant offers a diverse menu featuring exquisite, freshly prepared dishes crafted from premium ingredients." image={chefBg} />
                 </div>
-                <CategoryMenuWithButton meals={dessertMenu.slice(0, 6)} isPending={isPending} isError={isError} error={error} buttonText="Order Our Favorite Food" />
+                <CategoryMenuWithButton title="dessert" meals={dessertMenu.slice(0, 6)} isPending={isPending} isError={isError} error={error} buttonText="Order Our Favorite Food" />
                 {/* dessertMenu section ends */}
 
                 {/* drinksMenu section starts */}
                 <div className="py-10">
                     <CoverSection title="Drinks" sub_title="Bistro Boss Restaurant offers a diverse menu featuring exquisite, freshly prepared dishes crafted from premium ingredients." image={chefBg} />
                 </div>
-                <CategoryMenuWithButton meals={drinksMenu.slice(0, 6)} isPending={isPending} isError={isError} error={error} buttonText="Order Our Favorite Food" />
+                <CategoryMenuWithButton title="drinks" meals={drinksMenu.slice(0, 6)} isPending={isPending} isError={isError} error={error} buttonText="Order Our Favorite Food" />
                 {/* drinksMenu section ends */}
             </div>
         </section>

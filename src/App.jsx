@@ -14,7 +14,7 @@ function App() {
     {path: '/', errorElement: <ErrorPage />, element: <MainLayout />, children: [
       {path: '/', element: <Home />},
       {path: 'our-menu', element: <OurMenus />},
-      {path: 'our-shop', element: <OurShop />},
+      {path: 'our-shop/:category', element: <OurShop />},
       {path: 'contact-us', element: <ContactUs />},
       {path: 'sign-up', element: <SignUp />},
       {path: 'sign-in', element: <Signin />}

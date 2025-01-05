@@ -5,12 +5,17 @@ import CoverSection from '../../../components/CoverSection/CoverSection';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import useMenu from '../../../hooks/useMenu';
 import MenuCard from '../../../components/MenuCard/MenuCard';
+import { useParams } from 'react-router-dom';
 // import 'react-tabs/style/react-tabs.css';
 
 
 const OurShop = () => {
-    const [tabIndex, setTabIndex] = useState(0);
-    console.log('Tabindex:', tabIndex)
+    const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks'];
+    const { category } = useParams(0);
+    const initialIndex = categories.indexOf(category);
+    const [tabIndex, setTabIndex] = useState(initialIndex);
+    // console.log({ tabIndex, category });
+    
     const [ menu, isPending, isError, error, refetch ] = useMenu();
     const popularMenu = menu?.filter(menuItem => menuItem?.category.toLowerCase() === 'popular');
     const saladMenu = menu?.filter(menuItem => menuItem?.category.toLowerCase() === 'salad');

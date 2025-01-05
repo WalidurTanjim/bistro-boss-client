@@ -1,7 +1,8 @@
 import React from 'react';
 import Spinner from '../Spinner/Spinner';
+import { Link } from 'react-router-dom';
 
-const CategoryMenuWithButton = ({ meals, isPending, isError, error, buttonText }) => {
+const CategoryMenuWithButton = ({ title, meals, isPending, isError, error, buttonText }) => {
     return (
         <>
             <div className="pb-10">
@@ -36,9 +37,11 @@ const CategoryMenuWithButton = ({ meals, isPending, isError, error, buttonText }
 
             {
                 buttonText ? 
-                <div className="flex items-center justify-center">
-                    <button className='font-medium py-3 px-5 rounded-md border-b-2 border-orange-500 hover:bg-gray-100 active:bg-white'>{buttonText}</button>
-                </div>
+                <Link to={`/our-shop/${title}`}>
+                    <div className="flex items-center justify-center">
+                        <button className='font-medium py-3 px-5 rounded-md border-b-2 border-orange-500 hover:bg-gray-100 active:bg-white'>{buttonText}</button>
+                    </div>
+                </Link>
                 : undefined
             }
         </>
