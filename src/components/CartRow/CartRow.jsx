@@ -6,23 +6,11 @@ import Swal from 'sweetalert2';
 
 const CartRow = ({ item }) => {
     const [cart, isPending, isError, error, refetch] = useCart();
+    const { name, image, category, price, userName, userEmail } = item;
     const axiosSecure = useAxiosSecure();
 
     // deleteAddToCart
     const deleteAddToCart = id => {
-        // try {
-        //     const res = await axiosSecure.delete(`/carts/${id}`);
-        //     const data = await res?.data;
-        //     console.log(data);
-
-        //     if (data?.deletedCount > 0) {
-        //         toast.success('Menu deleted successfully');
-        //         refetch();
-        //     }
-        // } catch (err) {
-        //     console.error(err);
-        //     toast.error(err?.message);
-        // }
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -59,23 +47,20 @@ const CartRow = ({ item }) => {
             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                 <div className="inline-flex items-center gap-x-3">
                     <div className="flex items-center gap-x-2">
-                        <img className="object-cover w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="" />
+                        <img className="object-cover w-10 h-10 rounded-full" src={image} alt="" />
                         <div>
-                            <h2 className="font-medium text-gray-800 dark:text-white ">Arthur Melo</h2>
-                            <p className="text-sm font-normal text-gray-600 dark:text-gray-400">@authurmelo</p>
+                            <h2 className="font-medium text-gray-800 dark:text-white ">{name}</h2>
                         </div>
                     </div>
                 </div>
             </td>
             <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                 <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-
-                    <h2 className="text-sm font-normal text-emerald-500">Active</h2>
+                    <h2 className="text-sm font-normal text-emerald-500">${price}</h2>
                 </div>
             </td>
-            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Design Director</td>
-            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">authurmelo@example.com</td>
+            <td className="uppercase px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{category}</td>
+            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{userEmail}</td>
             <td className="px-4 py-4 text-sm whitespace-nowrap">
                 <div className="flex items-center gap-x-6">
                     <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none" onClick={() => deleteAddToCart(item?._id)}>

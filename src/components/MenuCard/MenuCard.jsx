@@ -19,8 +19,8 @@ const MenuCard = ({ meals, isPending, isError, error }) => {
             const { _id } = item;
             const newItem = {
                 menuId: _id,
-                name: user?.displayName,
-                email: user?.email,
+                userName: user?.displayName,
+                userEmail: user?.email,
                 userPhoto: user?.photoURL
             };
 
