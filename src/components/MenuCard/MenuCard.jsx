@@ -1,7 +1,20 @@
 import React from 'react';
 import Spinner from '../Spinner/Spinner';
+import useAuth from '../../hooks/useAuth';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const MenuCard = ({ meals, isPending, isError, error }) => {
+    const { user } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    // handelAddToCart
+    const handelAddToCart = item => {
+        if(!user && !user?.email){
+            navigate('/sign-in', { state: { from: location } }, { replace: true })
+        }
+    }
+
     return (
         <>
             <div>
@@ -28,7 +41,7 @@ const MenuCard = ({ meals, isPending, isError, error }) => {
                                                 <h2 className="card-title">{name}</h2>
                                                 <p>{recipe.length > 45 ? recipe.slice(0, 45)+'...' : recipe}</p>
                                                 <div className="card-actions">
-                                                    <button className="btn btn-primary">Add To Card</button>
+                                                    <button className="btn btn-primary" onClick={() => handelAddToCart(item)}>Add To Card</button>
                                                 </div>
                                             </div>
                                         </div>

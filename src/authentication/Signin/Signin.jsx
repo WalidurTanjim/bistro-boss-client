@@ -13,6 +13,8 @@ const Signin = () => {
     const { register, handleSubmit, watch, formState: { errors }, } = useForm();
     const location = useLocation();
     const navigate = useNavigate();
+    const triggeredLocation = location?.state?.from?.pathname;
+    // console.log({ location, triggeredLocation });
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -31,7 +33,7 @@ const Signin = () => {
         .then(result => {
             const user = result?.user;
             console.log('Sign in user:', user);
-            navigate('/');
+            navigate(triggeredLocation || '/');
         })
         .catch(err => {
             console.error(err);
