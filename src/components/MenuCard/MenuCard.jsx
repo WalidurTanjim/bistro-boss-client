@@ -2,16 +2,39 @@ import React from 'react';
 import Spinner from '../Spinner/Spinner';
 import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 
 const MenuCard = ({ meals, isPending, isError, error }) => {
     const { user } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
 
     // handelAddToCart
-    const handelAddToCart = item => {
+    const handelAddToCart = async (item) => {
         if(!user && !user?.email){
             navigate('/sign-in', { state: { from: location } }, { replace: true })
+        }else{
+            const { _id } = item;
+            const newItem = {
+                menuId: _id,
+                name: user?.displayName,
+                email: user?.email,
+                userPhoto: user?.photoURL
+            };
+
+            try{
+                const res = await axiosSecure.post('/carts', newItem);
+                const data = await res?.data;
+                // console.log(data);
+                if(data?.insertedId){
+                    toast.success('Menu added to the cart');
+                }
+            }catch(err){
+                console.error(err);
+                toast.error(err?.message);
+            }
         }
     }
 
