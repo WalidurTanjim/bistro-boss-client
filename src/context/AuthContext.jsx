@@ -1,12 +1,15 @@
 import React, { createContext, useEffect, useState } from 'react';
 import auth from '../firebase/firebase.config.js';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import toast from 'react-hot-toast';
+import useAxiosSecure from '../hooks/useAxiosSecure.jsx';
 
 export const UserContext = createContext(null);
 
 const AuthContext = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const axiosSecure = useAxiosSecure();
 
 
     // google signin
@@ -51,8 +54,42 @@ const AuthContext = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            setLoading(false);
             console.log("Current user:", currentUser);
+
+            if(currentUser?.email){
+                const userInfo = { email: currentUser?.email };
+                const fetchData = async() => {
+                    try{
+                        const res = await axiosSecure.post('/create-token', userInfo);
+                        const data = await res?.data;
+                        console.log('Current user:', data);
+                        
+                        if(data){
+                            setLoading(false);
+                        }
+                    }catch(err){
+                        console.error(err);
+                        toast.error(err?.message)
+                    }
+                };
+                fetchData();
+            }else{
+                const fetchData = async() => {
+                    try{
+                        const res = await axiosSecure.post('/logout', {});
+                        const data = await res?.data;
+                        console.log('Logout:', data);
+
+                        if(data){
+                            setLoading(false);
+                        }
+                    }catch(err){
+                        console.error(err);
+                        toast.error(err?.message);
+                    }
+                };
+                fetchData();
+            }
         });
 
         return () => {
