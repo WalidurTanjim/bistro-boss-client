@@ -3,10 +3,12 @@ import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
+import useCart from '../../../hooks/useCart';
 
 const Header = () => {
     const [navLinks, setNavLinks] = useState(false);
     const { user, logOut } = useAuth();
+    const [ cart, isPending, isError, error, refetch ] = useCart();
 
     // signOutHandler
     const signOutHandler = () => {
@@ -64,7 +66,7 @@ const Header = () => {
                     <Link to="/dashboard/cart">
                         <div className="flex items-center gap-x-1 px-1 py-2 hover:bg-gray-100 cursor-pointer rounded-md border me-2">
                             <ShoppingCartIcon className="size-5 text-slate-800" />
-                            <div className="badge badge-neutral">+ {user ? 99 : 0}</div>
+                            <div className="badge badge-neutral">+ {user ? cart.length : 0}</div>
                         </div>
                     </Link>
                     {
@@ -72,7 +74,7 @@ const Header = () => {
                         <>
                             <div className="avatar placeholder cursor-pointer">
                                 <div className="bg-neutral text-neutral-content w-8 rounded-full" onClick={() => setNavLinks(!navLinks)}>
-                                    <span className='uppercase'>{user?.displayName.charAt(0)}</span>
+                                    <span className='uppercase'>{user?.displayName?.charAt(0)}</span>
                                 </div>
                             </div>
                             {

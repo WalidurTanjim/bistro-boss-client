@@ -10,6 +10,7 @@ import SignUp from './authentication/SignUp/SignUp'
 import Signin from './authentication/Signin/Signin'
 import DashboardLayout from './layout/DashboardLayout'
 import Cart from './pages/Dashboard/Cart/Cart'
+import PrivateRoute from './PrivateRoute/PrivateRoute'
 
 function App() {
   const routers = createBrowserRouter([
@@ -23,7 +24,7 @@ function App() {
     ]},
     {
       path: 'dashboard', element: <DashboardLayout />, children: [
-        {path: 'cart', element: <Cart />}
+        {path: 'cart', element: <PrivateRoute><Cart /></PrivateRoute>}
       ]
     }
   ])

@@ -3,12 +3,14 @@ import auth from '../firebase/firebase.config.js';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import toast from 'react-hot-toast';
 import useAxiosSecure from '../hooks/useAxiosSecure.jsx';
+import useAxiosPublic from '../hooks/useAxiosPublic.jsx';
 
 export const UserContext = createContext(null);
 
 const AuthContext = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
 
 
@@ -58,13 +60,30 @@ const AuthContext = ({ children }) => {
 
             if(currentUser?.email){
                 const userInfo = { email: currentUser?.email };
+                const dbUserInfo = {
+                    userName: currentUser?.displayName,
+                    userEmail: currentUser?.email
+                }
                 const fetchData = async() => {
                     try{
                         const res = await axiosSecure.post('/create-token', userInfo);
                         const data = await res?.data;
-                        console.log('Current user:', data);
+                        // console.log('Current user:', data, data.success);
                         
-                        if(data){
+                        if(data.success){
+                            try{
+                                const res = await axiosPublic.post('/users', dbUserInfo);
+                                const data = await res?.data;
+                                // console.log("Create user to db:", data);
+
+                                if(data?.insertedId){
+                                    toast.success('Account created successfully');
+                                }
+                            }catch(err){
+                                console.error(err)
+                                toast.error(err?.message)
+                            }
+
                             setLoading(false);
                         }
                     }catch(err){
@@ -78,7 +97,7 @@ const AuthContext = ({ children }) => {
                     try{
                         const res = await axiosSecure.post('/logout', {});
                         const data = await res?.data;
-                        console.log('Logout:', data);
+                        // console.log('Logout:', data);
 
                         if(data){
                             setLoading(false);
