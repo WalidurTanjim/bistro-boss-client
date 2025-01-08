@@ -58,10 +58,10 @@ const AuthContext = ({ children }) => {
             setUser(currentUser);
             console.log("Current user:", currentUser);
 
-            if(currentUser?.email){
+            if(currentUser && currentUser?.email){
                 const userInfo = { email: currentUser?.email };
                 const dbUserInfo = {
-                    userName: currentUser?.displayName,
+                    userName: currentUser?.displayName || 'Anonymous',
                     userEmail: currentUser?.email
                 }
                 const fetchData = async() => {
