@@ -5,8 +5,8 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 import { TrashIcon, ShieldCheckIcon } from '@heroicons/react/24/outline';
 
-const UserRow = ({ user }) => {
-    const { _id, userName, userEmail, role } = user;
+const UserRow = ({ webUser }) => {
+    const { _id, userName, userEmail, role } = webUser;
     const [all_users, isPending, isError, error, refetch] = useAllUsers();
     const axiosSecure = useAxiosSecure();
 
@@ -98,7 +98,9 @@ const UserRow = ({ user }) => {
             </td>
 
             {/* role */}
-            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{role}</td>
+            <td className="px-4 py-4 text-xs text-slate-700 dark:text-gray-300 whitespace-nowrap">
+                <span className={`px-4 py-1 rounded-full border ${role === 'admin' ? 'bg-green-100 border-green-300' : ''}`}>{role}</span>
+            </td>
 
             {/* email address */}
             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{userEmail}</td>
@@ -110,7 +112,7 @@ const UserRow = ({ user }) => {
                         <TrashIcon className='w-5 h-7' />
                     </button>
 
-                    <button onClick={() => handleMakeAdmin(_id)} className="text-gray-500 transition-colors duration-200 dark:hover:text-green-500 dark:text-gray-300 hover:text-green-500 active:text-green-300 focus:outline-none">
+                    <button disabled={role === 'admin' ? true : false} onClick={() => handleMakeAdmin(_id)} className={`text-gray-500 transition-colors duration-200 dark:hover:text-green-500 dark:text-gray-300 hover:text-green-500 active:text-green-300 focus:outline-none ${role === 'admin' ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
                         <ShieldCheckIcon className='w-5 h-5' />
                     </button>
                 </div>

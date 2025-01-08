@@ -32,7 +32,7 @@ const AllUsers = () => {
                                             <Spinner />
                                         ) : isError ? (
                                             <div className='w-full py-12 flex items-center justify-center'>
-                                                <p className='text-2xl font-medium text-red-500'>{error?.message}</p>
+                                                <p className='text-2xl font-medium text-red-500'>{error?.response?.data?.message}</p>
                                             </div>
                                         ) : (
                                             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -71,7 +71,7 @@ const AllUsers = () => {
 
                                                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                                     {
-                                                        all_users?.map(user => <UserRow key={user?._id} user={user} />)
+                                                        all_users?.map(webUser => <UserRow key={webUser?._id} webUser={webUser} />)
                                                     }
                                                 </tbody>
                                             </table>
