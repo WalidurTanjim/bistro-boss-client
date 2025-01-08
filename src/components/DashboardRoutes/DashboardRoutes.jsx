@@ -1,9 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Bars3BottomRightIcon } from '@heroicons/react/24/outline'
+import useAdmin from '../../hooks/useAdmin';
 
 const DashboardRoutes = () => {
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
+    console.log(isAdmin)
 
     return (
         <div className="drawer">

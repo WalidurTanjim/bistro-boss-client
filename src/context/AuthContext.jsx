@@ -112,7 +112,7 @@ const AuthContext = ({ children }) => {
         return () => {
             return unsubscribe();
         }
-    }, [setUser, setLoading]);
+    }, [setUser, setLoading, axiosPublic]);
 
     const info = {
         user,
