@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useState } from 'react';
 import auth from '../firebase/firebase.config.js';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import toast from 'react-hot-toast';
-import useAxiosSecure from '../hooks/useAxiosSecure.jsx';
 import useAxiosPublic from '../hooks/useAxiosPublic.jsx';
 
 export const UserContext = createContext(null);
@@ -11,7 +10,6 @@ const AuthContext = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const axiosPublic = useAxiosPublic();
-    const axiosSecure = useAxiosSecure();
 
 
     // google signin
@@ -66,7 +64,7 @@ const AuthContext = ({ children }) => {
                 }
                 const fetchData = async() => {
                     try{
-                        const res = await axiosSecure.post('/create-token', userInfo);
+                        const res = await axiosPublic.post('/create-token', userInfo);
                         const data = await res?.data;
                         // console.log('Current user:', data, data.success);
                         
@@ -95,7 +93,7 @@ const AuthContext = ({ children }) => {
             }else{
                 const fetchData = async() => {
                     try{
-                        const res = await axiosSecure.post('/logout', {});
+                        const res = await axiosPublic.post('/logout', {});
                         const data = await res?.data;
                         // console.log('Logout:', data);
 

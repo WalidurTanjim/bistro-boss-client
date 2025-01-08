@@ -11,6 +11,7 @@ const useAllUsers = () => {
         queryKey: ['all_users'],
         queryFn: async() => {
             const res = await axiosSecure.get(`/users?email=${user?.email}`);
+            // const res = await axiosSecure.get(`/users?email=abc@gmail.com`);
             const data = await res?.data;
             if(data){
                 return data;
