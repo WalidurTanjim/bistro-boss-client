@@ -12,6 +12,7 @@ import DashboardLayout from './layout/DashboardLayout'
 import Cart from './pages/Dashboard/Cart/Cart'
 import PrivateRoute from './PrivateRoute/PrivateRoute'
 import AllUsers from './pages/Dashboard/Admin/AllUsers/AllUsers'
+import AdminRoute from './AdminRoute/AdminRoute'
 
 function App() {
   const routers = createBrowserRouter([
@@ -26,7 +27,7 @@ function App() {
     {
       path: 'dashboard', element: <DashboardLayout />, children: [
         // admin only
-        {path: 'all-users', element: <PrivateRoute><AllUsers /></PrivateRoute>},
+        {path: 'all-users', element: <AdminRoute><AllUsers /></AdminRoute>},
 
         // normal user
         {path: 'cart', element: <PrivateRoute><Cart /></PrivateRoute>}
