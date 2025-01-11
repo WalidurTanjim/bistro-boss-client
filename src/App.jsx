@@ -17,6 +17,7 @@ import AddItem from './pages/Dashboard/Admin/AddItem/AddItem'
 import ManageItems from './pages/Dashboard/Admin/ManageItems/ManageItems'
 import AdminHome from './pages/Dashboard/Admin/AdminHome/AdminHome'
 import UserHome from './pages/Dashboard/UserHome/UserHome'
+import UpdateRoute from './pages/Dashboard/Admin/UpdateRoute/UpdateRoute'
 
 function App() {
   const routers = createBrowserRouter([
@@ -35,6 +36,7 @@ function App() {
         {path: 'add-item', element: <AdminRoute><AddItem /></AdminRoute>},
         {path: 'manage-items', element: <AdminRoute><ManageItems /></AdminRoute>},
         {path: 'all-users', element: <AdminRoute><AllUsers /></AdminRoute>},
+        {path: 'update-item/:id', element: <AdminRoute><UpdateRoute /></AdminRoute>},
 
         // normal user
         {path: 'user-home', element: <PrivateRoute><UserHome /></PrivateRoute>},

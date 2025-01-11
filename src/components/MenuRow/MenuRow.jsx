@@ -2,6 +2,7 @@ import React from 'react';
 import useMenu from '../../hooks/useMenu';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { TrashIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';
 
 const MenuRow = ({ menu_item }) => {
     const { _id, name, recipe, image, category, price } = menu_item || {};
@@ -37,9 +38,11 @@ const MenuRow = ({ menu_item }) => {
                     </button>
 
                     {/* edit button */}
-                    <button className="text-gray-500 transition-colors duration-200 dark:hover:text-blue-500 dark:text-gray-300 hover:text-blue-500 active:text-blue-300 focus:outline-none">
-                        <PencilSquareIcon className='w-5 h-7' />
-                    </button>
+                    <Link to={`/dashboard/update-item/${_id}`}>
+                        <button className="text-gray-500 transition-colors duration-200 dark:hover:text-blue-500 dark:text-gray-300 hover:text-blue-500 active:text-blue-300 focus:outline-none">
+                            <PencilSquareIcon className='w-5 h-7' />
+                        </button>
+                    </Link>
                 </div>
             </td>
         </tr>
