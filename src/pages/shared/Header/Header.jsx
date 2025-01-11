@@ -4,10 +4,12 @@ import useAuth from '../../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import useCart from '../../../hooks/useCart';
+import useAdmin from '../../../hooks/useAdmin';
 
 const Header = () => {
     const [navLinks, setNavLinks] = useState(false);
     const { user, logOut } = useAuth();
+    const [ isAdmin ] = useAdmin();
     const [ cart, isPending, isError, error, refetch ] = useCart();
 
     // signOutHandler
@@ -63,12 +65,22 @@ const Header = () => {
                 </div>
 
                 <div className="navbar-end relative">
-                    <Link to="/dashboard/cart">
-                        <div className="flex items-center gap-x-1 px-1 py-2 hover:bg-gray-100 cursor-pointer rounded-md border me-2">
-                            <ShoppingCartIcon className="size-5 text-slate-800" />
-                            <div className="badge badge-neutral">+ {user ? cart.length : 0}</div>
-                        </div>
-                    </Link>
+                    {
+                        user && isAdmin ?
+                        <Link to="/dashboard/admin-home">
+                            <div className="flex items-center gap-x-1 px-1 py-2 hover:bg-gray-100 cursor-pointer rounded-md border me-2">
+                                <ShoppingCartIcon className="size-5 text-slate-800" />
+                                <div className="badge badge-neutral">+ {user ? cart.length : 0}</div>
+                            </div>
+                        </Link> :
+                        user && !isAdmin ?
+                        <Link to="/dashboard/user-home">
+                            <div className="flex items-center gap-x-1 px-1 py-2 hover:bg-gray-100 cursor-pointer rounded-md border me-2">
+                                <ShoppingCartIcon className="size-5 text-slate-800" />
+                                <div className="badge badge-neutral">+ {user ? cart.length : 0}</div>
+                            </div>
+                        </Link> : undefined
+                    }
                     {
                         user ? 
                         <>
