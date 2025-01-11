@@ -13,6 +13,7 @@ import Cart from './pages/Dashboard/Cart/Cart'
 import PrivateRoute from './PrivateRoute/PrivateRoute'
 import AllUsers from './pages/Dashboard/Admin/AllUsers/AllUsers'
 import AdminRoute from './AdminRoute/AdminRoute'
+import AddItem from './pages/Dashboard/Admin/AddItem/AddItem'
 
 function App() {
   const routers = createBrowserRouter([
@@ -27,6 +28,7 @@ function App() {
     {
       path: 'dashboard', element: <DashboardLayout />, children: [
         // admin only
+        {path: 'add-item', element: <AdminRoute><AddItem /></AdminRoute>},
         {path: 'all-users', element: <AdminRoute><AllUsers /></AdminRoute>},
 
         // normal user

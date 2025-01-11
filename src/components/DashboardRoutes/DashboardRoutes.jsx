@@ -5,7 +5,6 @@ import useAdmin from '../../hooks/useAdmin';
 
 const DashboardRoutes = () => {
     const [isAdmin] = useAdmin();
-    console.log(isAdmin)
 
     return (
         <div className="drawer">
